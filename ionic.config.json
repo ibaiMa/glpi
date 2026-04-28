@@ -1,0 +1,7 @@
+{
+  "name": "glpi",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
