@@ -1,17 +1,57 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Inventario GLPI</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  
+  <!-- lista d equipos  -->
+  <ion-list *ngIf="!selectedComputer">
+    <ion-list-header>Selecciona un equipo</ion-list-header>
+    
+    <!-- coje el nombre del pc clickado -->
+    <ion-item button *ngFor="let pc of computers" (click)='seleccionarPC(pc)'>
+      <ion-label>{{ pc.name }}</ion-label>
+    </ion-item>
+  </ion-list>
+  <div *ngIf="selectedComputer">
+    <h2 class="ion-text-center">{{ selectedComputer.name }}</h2>
+    <!-- Campo de texto para escribir una nota -->
+    <ion-textarea 
+      [(ngModel)]="newComment" 
+      fill="outline" 
+      labelPlacement="floating"
+      placeholder="Escribe aquí..." 
+      rows="4">
+    </ion-textarea>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+    <!-- boton para enviar la nota -->
+    <ion-button expand="block" (click)="saveChanges()" class="ion-margin-top">
+      Guardar Nota
+    </ion-button>
+
+    <!-- btn para volver a la lista -->
+    <ion-button expand="block" fill="clear" color="danger" (click)="selectedComputer = null">
+      Volver a la lista
+    </ion-button>
+ 
+    <h3>Historial de Notas</h3>
+    
+    <div *ngIf="notesList.length > 0; else vacio">
+      <!-- crea una tarjeta por cada nota  -->
+      <ion-card *ngFor="let n of notesList">
+        <ion-card-header>
+          <ion-card-subtitle>{{ n.date_creation }}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>{{ n.content }}</ion-card-content>
+      </ion-card>
+    </div>
+
+    <!-- Mensaje si el pc no tiene notas -->
+    <ng-template #vacio>
+      <p class="ion-text-center">No hay notas registradas.</p>
+    </ng-template>
+  </div>
+
 </ion-content>

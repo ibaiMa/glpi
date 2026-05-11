@@ -1,0 +1,67 @@
+
+.ion-padding {
+  --padding-top: 16px;
+}
+
+
+.custom-textarea {
+  --background: #f9f9f9;
+  --padding-start: 12px;
+  --padding-end: 12px;
+  --placeholder-color: #999;
+  font-size: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+
+.btn-registrar {
+  --border-radius: 8px;
+  font-weight: 600;
+  margin-top: 15px;
+  height: 50px;
+}
+
+.historial-header {
+  margin-top: 25px;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: var(--ion-color-primary);
+  border-bottom: 2px solid var(--ion-color-primary);
+  padding-bottom: 5px;
+}
+
+
+.nota-card {
+  margin-top: 12px;
+  margin-inline: 0;
+  border-left: 4px solid var(--ion-color-primary); 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 0 8px 8px 0;
+
+  ion-card-header {
+    padding: 10px 15px 5px;
+    background: #f4f5f8;
+
+    ion-card-subtitle {
+      color: #666;
+      font-weight: 500;
+    }
+  }
+
+  ion-card-content {
+    padding: 12px 15px;
+    font-size: 15px;
+    line-height: 1.4;
+    color: #333;
+  }
+}
+
+.no-notes-msg {
+  text-align: center;
+  padding: 20px;
+  color: #999;
+  font-style: italic;
+}
