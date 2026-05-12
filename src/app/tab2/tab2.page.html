@@ -1,17 +1,29 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Configuración</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-list-header>
+      <ion-label>CONEXIÓN AL SERVIDOR</ion-label>
+    </ion-list-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+    <ion-item>
+      <ion-label position="stacked">IP o Dominio del Servidor</ion-label>
+      <ion-input [(ngModel)]="nuevaIp" placeholder="Ej: 192.168.1.135"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="block" (click)="guardarConfig()" class="ion-margin-top">
+    Guardar y Aplicar
+  </ion-button>
+
+  <div class="ion-text-center ion-margin-top">
+    <p style="color: gray; font-size: 0.9em;">
+      Conectando actualmente a: <br>
+      <strong>http://{{ ipActual }}/glpi/apirest.php</strong>
+    </p>
+  </div>
 </ion-content>

@@ -1,15 +1,44 @@
-import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
-import { ExploreContainerComponent } from '../explore-container/explore-container.component';
+import { Component, OnInit, inject } from '@angular/core';
+import { 
+  IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, 
+  IonLabel, IonInput, IonButton, IonListHeader, ToastController 
+} from '@ionic/angular/standalone';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
-  styleUrls: ['tab2.page.scss'],
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, ExploreContainerComponent]
+  standalone: true,
+  imports: [
+    CommonModule, FormsModule, IonHeader, IonToolbar, IonTitle, 
+    IonContent, IonList, IonItem, IonLabel, IonInput, IonButton, IonListHeader
+  ]
 })
-export class Tab2Page {
+export class Tab2Page implements OnInit {
+  private toastCtrl = inject(ToastController);
 
-  constructor() {}
+  nuevaIp: string = "";
+  ipActual: string = "";
 
+  ngOnInit() {
+    // Carga la IP guardada o usa 'glpi1.local' por defecto
+    this.ipActual = localStorage.getItem('glpi_ip') || 'glpi1.local';
+    this.nuevaIp = this.ipActual;
+  }
+
+  async guardarConfig() {
+    if (this.nuevaIp.trim()) {
+      // Guarda en la memoria persistente
+      localStorage.setItem('glpi_ip', this.nuevaIp.trim());
+      this.ipActual = this.nuevaIp.trim();
+
+      const toast = await this.toastCtrl.create({
+        message: 'Configuración guardada correctamente',
+        duration: 2000,
+        color: 'success'
+      });
+      toast.present();
+    }
+  }
 }
