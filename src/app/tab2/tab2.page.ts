@@ -29,7 +29,7 @@ export class Tab2Page implements OnInit {
 
   async guardarConfig() {
     if (this.nuevaIp.trim()) {
-      // Guarda en la memoria persistente
+      // Guarda en la memoria
       localStorage.setItem('glpi_ip', this.nuevaIp.trim());
       this.ipActual = this.nuevaIp.trim();
 
